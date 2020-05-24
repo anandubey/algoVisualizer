@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'visualizer/css/style.css'%}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="site_wrapper">
+        <nav class="navbar">
+            <button>Dijkstra Algorithm</button>
+        </nav>
+        <main>
+            <table id="layout_table">
+                <tbody>
+                    {% for row in rows %}
+                        <tr id="row-{{row}}">
+                            {% for column in columns %}
+                                <td id="{{row}}-{{column}}"></td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+    <script type="text/javascript">
+        var startNode = document.getElementById("{{startNode.0}}-{{startNode.1}}");
+        var endNode = document.getElementById("{{finishNode.0}}-{{finishNode.1}}");
+        startNode.style.backgroundColor = "green";
+        endNode.style.backgroundColor = "red";
+    </script>
+</body>
+</html>
