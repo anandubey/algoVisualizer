@@ -9,6 +9,7 @@ html, body{
     width: 100%;
     display: grid;
     grid-template-rows: 52px 1fr;
+    grid-template-columns: 1fr;
 }
 
 .navbar{
@@ -20,10 +21,15 @@ html, body{
     align-items: center;
 }
 
-.navbar > button{
+.navbar > a{
     font-size: 1.2rem;
-    height: 100%;
+    height: 60%;
     width: 200px;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    justify-content: center;  
+    background-color: white;
 }
 
 main{
@@ -44,10 +50,62 @@ main{
 #layout_table td{
     display: table-cell;
     width: 25px;
+    min-width: 25px;
     height: 25px;
+    min-height: 25px;
     background-color: white;
 }
 
 table, th, td{
     border: 1px solid rgb(175, 216, 248);
 }
+
+#start_item{
+    width: 16px;    
+    height: 16px;
+    margin: 0 auto;
+    background-color: rgb(102, 255, 204);
+    border: 2px solid rgba(0, 179, 143, .5);
+    border-radius: 50%;
+    touch-action: none;
+    user-select: none;
+}
+
+/*#start_item:active {
+    background-color: rgba(168, 218, 220, 1.00);
+}
+*/
+#start_item:hover {
+    cursor: pointer;
+    border-width: 4px;
+}
+
+
+#end_item{
+    width: 16px;
+    height: 16px;
+    margin: 0 auto;
+    background-color: rgb(255, 153, 153);
+    border: 2px solid rgba(204, 41, 0, .5);
+    border-radius: 50%;
+    touch-action: none;
+    user-select: none;
+}
+#end_item:active {
+    background-color: rgba(168, 218, 220, 1.00);
+}
+#end_item:hover {
+    cursor: pointer;
+    border-width: 4px;
+}
+
+.fill{
+    position: relative;
+
+}
+
+.invisible{
+    display: none;
+}
+
+

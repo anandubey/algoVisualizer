@@ -7,32 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{% static 'visualizer/css/style.css'%}">
-    <title>Document</title>
+    <title>Algorithm Visualizer</title>
+    <script type="text/javascript" src="{% static '/visualizer/js/main.js' %}"></script>
 </head>
 <body>
     <div class="site_wrapper">
         <nav class="navbar">
-            <button>Dijkstra Algorithm</button>
+            <a href="{% url 'visualizer'%}?algo=dijkstra&start={{startNode.0}}-{{startNode.1}}&end={{finishNode.0}}-{{finishNode.1}}">Dijkstra Algorithm</a>
         </nav>
         <main>
             <table id="layout_table">
                 <tbody>
+                    <form>
                     {% for row in rows %}
                         <tr id="row-{{row}}">
                             {% for column in columns %}
-                                <td id="{{row}}-{{column}}"></td>
+                                <input type="hidden" name="{{row}}-{{column}}">
+                                <td id="{{row}}-{{column}}" class="empty"></td>
                             {% endfor %}
                         </tr>
                     {% endfor %}
+                    </form>
                 </tbody>
             </table>
         </main>
     </div>
+    
     <script type="text/javascript">
         var startNode = document.getElementById("{{startNode.0}}-{{startNode.1}}");
         var endNode = document.getElementById("{{finishNode.0}}-{{finishNode.1}}");
-        startNode.style.backgroundColor = "green";
-        endNode.style.backgroundColor = "red";
+        initializeMainNodes(startNode, endNode);
+        nodesDragger();
+        {% if visitedInOrder %}
+            var visitedNodes = "{{visitedInOrder}}".split(" ");
+            visualizeAlgorithm(visitedNodes, endNode);
+        {% endif %}
+
     </script>
 </body>
 </html>
