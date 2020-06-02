@@ -16,10 +16,12 @@ def visualizer(request):
 		startNode = (int(splitted_start[0]), int(splitted_start[1]))
 		finishNode = (int(splitted_end[0]), int(splitted_end[1]))
 		visited, path = dj.shortest_path(graph, origin, destination)
-		print(len(visited))
+		print(path)
+		path = " ".join(path)
 		visited = " ".join(visited.keys())
+		print(path)
 		
-		grid = {'rows': range(ROW_COUNT+1), 'columns': range(COLUMN_COUNT+1), 'startNode':startNode, 'finishNode':finishNode, 'visitedInOrder':visited}
+		grid = {'rows': range(ROW_COUNT+1), 'columns': range(COLUMN_COUNT+1), 'startNode':startNode, 'finishNode':finishNode, 'visitedInOrder':visited, 'path':path}
 		return render(request, 'visualizer/visualizer.html', grid)
 	else:
 		startNode = (randint(1,ROW_COUNT), randint(1,COLUMN_COUNT))

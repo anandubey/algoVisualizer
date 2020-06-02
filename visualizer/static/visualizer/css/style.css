@@ -108,4 +108,18 @@ table, th, td{
     display: none;
 }
 
+.visited{
+    animation: visitChecked 0.5s linear 1;
+    animation-fill-mode: forwards;
+}
+    
+@keyframes visitChecked {
+    0% {
+        background-color: white;
+    }
+    100% {
+        background-color: teal;
+    }
+}
+
 

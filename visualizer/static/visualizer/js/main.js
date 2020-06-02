@@ -89,18 +89,54 @@ function nodesDragger(){
 	}
 }
 
-async function visualizeAlgorithm(visitedNodes, endNode){
+
+async function visualizeAlgorithm(visitedNodes, path, endNode){
 	console.log(endNode);
 	for (var i = 0; i < visitedNodes.length; i++) {
 		if (visitedNodes[i] == endNode) {
 			console.log("found");
 			break;
 		}
+		var node = document.getElementById(visitedNodes[i]);	
+		node.className = "visited";
+		await new Promise(r => setTimeout(r, 20));
+
+	}
+
+	for (var i = 0; i < path.length; i++) {
+		var node = document.getElementById(path[i]);
+		node.style.backgroundColor = "yellow";
+		await new Promise(r => setTimeout(r, 200));
+	}
+		
+		/*
+		node.animate([
+  			// keyframes
+  			{ backgroundColor: "white" }, 
+  			{ backgroundColor: "teal" }
+  			], { 
+  			// timing options
+  			duration: 2000,
+  			iterations: 1,
+		});
+
+node.animate([
+  			// keyframes
+  			{ backgroundColor: "white" }, 
+  			{ backgroundColor: "teal" }
+  			], { 
+  			// timing options
+  			duration: 2000,
+  			iterations: 1,
+		});
+
+
 		var node = document.getElementById(visitedNodes[i]);
 		node.style.backgroundColor = "teal";
-		await new Promise(r => setTimeout(r, 200));
 		
-	}
+		*/
+		
+	
 	
 
 }

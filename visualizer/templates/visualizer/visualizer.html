@@ -40,7 +40,8 @@
         nodesDragger();
         {% if visitedInOrder %}
             var visitedNodes = "{{visitedInOrder}}".split(" ");
-            visualizeAlgorithm(visitedNodes, endNode);
+            var path = "{{path}}".split(" ");
+            visualizeAlgorithm(visitedNodes, path, endNode);
         {% endif %}
 
     </script>
