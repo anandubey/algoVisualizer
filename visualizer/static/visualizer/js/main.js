@@ -18,18 +18,19 @@ function initializeMainNodes(startNode, endNode) {
 
 
 function nodesDragger(){
-	const fill = document.querySelectorAll('.fill');
+	const startItem = document.getElementById('start_item');
+	const endItem = document.getElementById('end_item');
 	const empties = document.querySelectorAll('.empty');
 	var startDragging = false;
 	var endDragging = false;
 
 	// Start Node Listener
-	fill[0].addEventListener('dragstart', startDragStart);
-	fill[0].addEventListener('dragend', startDragEnd);
+	startItem.addEventListener('dragstart', startDragStart);
+	startItem.addEventListener('dragend', startDragEnd);
 
 	// End Node Listener
-	fill[1].addEventListener('dragstart', endDragStart);
-	fill[1].addEventListener('dragend', endDragEnd)
+	endItem.addEventListener('dragstart', endDragStart);
+	endItem.addEventListener('dragend', endDragEnd)
 
 
 	// Event Listener for all the table cells
@@ -80,10 +81,12 @@ function nodesDragger(){
 	function dragDrop() {
 		this.className = 'empty';
 		if (startDragging) {
-			this.append(fill[0]);
+			this.append(startItem);
+			document.getElementById('visualizeButton').href = "/?algo=dijkstra&start="+startItem.parentNode.id+"&end="+endItem.parentNode.id;
 		}
 		if(endDragging){
-			this.append(fill[1]);
+			this.append(endItem);
+			document.getElementById('visualizeButton').href = "/?algo=dijkstra&start="+startItem.parentNode.id+"&end="+endItem.parentNode.id;
 		}
 		
 	}
@@ -105,38 +108,8 @@ async function visualizeAlgorithm(visitedNodes, path, endNode){
 
 	for (var i = 0; i < path.length; i++) {
 		var node = document.getElementById(path[i]);
-		node.style.backgroundColor = "yellow";
-		await new Promise(r => setTimeout(r, 200));
+		node.className = "node-shortest-path";
+		await new Promise(r => setTimeout(r, 20));
 	}
-		
-		/*
-		node.animate([
-  			// keyframes
-  			{ backgroundColor: "white" }, 
-  			{ backgroundColor: "teal" }
-  			], { 
-  			// timing options
-  			duration: 2000,
-  			iterations: 1,
-		});
-
-node.animate([
-  			// keyframes
-  			{ backgroundColor: "white" }, 
-  			{ backgroundColor: "teal" }
-  			], { 
-  			// timing options
-  			duration: 2000,
-  			iterations: 1,
-		});
-
-
-		var node = document.getElementById(visitedNodes[i]);
-		node.style.backgroundColor = "teal";
-		
-		*/
-		
-	
-	
 
 }
